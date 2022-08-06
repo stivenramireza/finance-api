@@ -4,12 +4,15 @@ services:
   api:
     container_name: api
     build: .
-    depends_on:
-      - db
+    restart: always
     ports:
       - 80:8000
     networks:
       - finance
+    volumes:
+      - .:/app
+    depends_on:
+      - db
 
   db:
     container_name: db
