@@ -3,5 +3,5 @@
 Financial API for user transactions management.
 
 <p align="center">
-<img src="https://i.ytimg.com/vi/MoBYBc1dkhE/maxresdefault.jpg">
+<img src="https://www.akana.com/sites/default/files/image/2019-06/image-api-banking-financial.png">
 </p>
