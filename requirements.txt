@@ -1,3 +1,5 @@
 fastapi==0.79.0
+pydantic==1.9.1
+pydantic[email]
 uvicorn==0.18.2
 python-dotenv==0.20.0
