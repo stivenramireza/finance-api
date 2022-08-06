@@ -1,9 +1,12 @@
+# Environment variables
+.env
+.env.dev
+
 # Virtual environment
 venv
-
-# Code editor
-.vscode
 
 # Python cache
 __pycache__
 
+# Code editor
+.vscode
