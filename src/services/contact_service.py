@@ -1,11 +1,19 @@
 from fastapi import HTTPException
 from sqlalchemy.orm import Session
 
-from src.schemas.contact_schema import ContactCreate, User
+from src.schemas.contact_schema import ContactCreate, Contact
 from src.repositories import contact_repository
 
 
-def create_contact(db: Session, contact: ContactCreate) -> User:
+def get_contact_by_id(db: Session, contact_id: str) -> Contact:
+    return contact_repository.get_contact_by_id(db, contact_id)
+
+
+def get_contact_by_email(db: Session, email: str) -> Contact:
+    return contact_repository.get_contact_by_email(db, email)
+
+
+def create_contact(db: Session, contact: ContactCreate) -> Contact:
     found_contact = contact_repository.get_contact_by_document(
         db, contact.document
     )
