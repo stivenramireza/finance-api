@@ -1,14 +1,13 @@
 from fastapi import HTTPException, status
 from sqlalchemy.orm import Session
 
-from src.schemas.contact_schema import ContactCreate, Contact
-from src.schemas.user_schema import User
+from src.schemas.user_schema import User, UserCreate
 from src.repositories import user_repository
 from src.services import contact_service
 from src.middlewares import password_middleware
 
 
-def get_user_by_id(db: Session, user_id: str) -> Contact:
+def get_user_by_id(db: Session, user_id: str) -> User:
     user = user_repository.get_user_by_id(db, user_id)
     if not user:
         raise HTTPException(
@@ -28,14 +27,14 @@ def get_user_by_contact_id(db: Session, contact_id: str) -> User:
     return user_repository.get_user_by_contact_id(db, contact_id)
 
 
-def create_user(db: Session, contact: ContactCreate) -> bool:
-    created_contact = contact_service.create_contact(db, contact)
+def create_user(db: Session, user: UserCreate) -> User:
+    created_contact = contact_service.create_contact(db, user)
     if not created_contact:
         raise HTTPException(
             status_code=409, detail='Contact could not be registered'
         )
 
-    hashed_password = password_middleware.get_password_hash(
-        contact.credential.password
+    hashed_password = password_middleware.get_password_hash(user.password)
+    return user_repository.create_user(
+        db, user.username, hashed_password, created_contact.id
     )
-    return user_repository.create_user(db, created_contact.id, hashed_password)

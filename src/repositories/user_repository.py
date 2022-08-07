@@ -13,11 +13,16 @@ def get_user_by_contact_id(db: Session, contact_id: str) -> User:
     return db.query(User).filter(User.contact_id == contact_id).first()
 
 
-def create_user(db: Session, contact_id: int, password: str) -> bool:
+def create_user(
+    db: Session, username: str, password: str, contact_id: int
+) -> User:
     created_user = User(
-        id=str(uuid4()), contact_id=contact_id, password=password
+        uid=str(uuid4()),
+        username=username,
+        password=password,
+        contact_id=contact_id,
     )
     db.add(created_user)
     db.commit()
     db.refresh(created_user)
-    return True
+    return created_user
