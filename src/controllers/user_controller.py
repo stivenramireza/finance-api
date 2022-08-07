@@ -1,10 +1,22 @@
-from fastapi import APIRouter
-from fastapi import status
+from fastapi import APIRouter, Depends, status
 
-from src.models.user_model import UserRegister
+from sqlalchemy.orm import Session
+
+from src.config.database import Base, SessionLocal, engine
+from src.schemas.contact_schema import ContactCreate
 from src.services import user_service
 
+Base.metadata.create_all(bind=engine)
+
 router = APIRouter(prefix='/users', tags=['Users'])
+
+# Dependency
+def get_db() -> SessionLocal:
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
 
 
 @router.post(
@@ -12,5 +24,7 @@ router = APIRouter(prefix='/users', tags=['Users'])
     status_code=status.HTTP_201_CREATED,
     summary='Register a user',
 )
-def post_user(user: UserRegister) -> dict[str, any]:
-    return user_service.register_user(user)
+def create_user(
+    user: ContactCreate, db: Session = Depends(get_db)
+) -> dict[str, any]:
+    return {'success': user_service.create_user(db, user)}

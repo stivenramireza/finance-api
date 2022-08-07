@@ -1,23 +1,18 @@
-from uuid import UUID
+from datetime import datetime
 
-from pydantic import BaseModel, Field, EmailStr
+from sqlalchemy import Column, Integer, String, Date, ForeignKey
+from sqlalchemy.orm import relationship
 
-
-class User(BaseModel):
-    name: str = Field(
-        ..., min_length=1, max_length=50, example='Stiven Ramírez Arango'
-    )
-    email: EmailStr = Field(..., example='stivenramireza@gmail.com')
+from src.config.database import Base
 
 
-class UserPassword(BaseModel):
-    password: str = Field(..., min_length=8, example='stivenramireza')
+class User(Base):
+    __tablename__ = 'users'
 
+    id = Column(String, primary_key=True)
+    contact_id = Column(Integer, ForeignKey('contacts.id'))
+    password = Column(String)
+    created_at = Column(Date, default=datetime.utcnow())
+    updated_at = Column(Date, default=datetime.utcnow())
 
-class UserLogin(User, UserPassword):
-    pass
-
-
-class UserRegister(User, UserPassword):
-    def __str__(self) -> str:
-        return self.dict()
+    contact = relationship('Contact', back_populates='users')

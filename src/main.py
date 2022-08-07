@@ -2,6 +2,7 @@ from fastapi import FastAPI
 
 from src.controllers import user_controller
 
+
 app = FastAPI(title='Finance API')
 
 

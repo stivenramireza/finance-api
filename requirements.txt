@@ -1,5 +1,7 @@
 fastapi==0.79.0
-pydantic==1.9.1
-pydantic[email]
+pydantic[email]==1.9.1
 uvicorn==0.18.2
+sqlalchemy==1.4.39
+psycopg2-binary==2.9.3
+passlib[bcrypt]==1.7.4
 python-dotenv==0.20.0
