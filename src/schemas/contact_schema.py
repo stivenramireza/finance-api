@@ -1,16 +1,13 @@
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel
 
 
-class ContactBase(BaseModel):
+class ContactBaseSchema(BaseModel):
     name: str
     document_type: str
     document: str
-    email: EmailStr
+    email: str
 
 
-class ContactCreate(ContactBase):
-    pass
-
-
-class Contact(ContactBase):
-    pass
+class ContactSchema(ContactBaseSchema):
+    class Config:
+        orm_mode = True

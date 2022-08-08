@@ -9,6 +9,14 @@ def get_user_by_id(db: Session, user_id: str) -> User:
     return db.query(User).filter(User.id == user_id).first()
 
 
+def get_user_by_uid(db: Session, uid: str) -> User:
+    return db.query(User).filter(User.uid == uid).first()
+
+
+def get_user_by_username(db: Session, username: str) -> User:
+    return db.query(User).filter(User.username == username).first()
+
+
 def get_user_by_contact_id(db: Session, contact_id: str) -> User:
     return db.query(User).filter(User.contact_id == contact_id).first()
 

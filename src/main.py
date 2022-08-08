@@ -1,14 +1,10 @@
 from fastapi import FastAPI
 
-from src.controllers import user_controller
+from src.controllers import auth_controller, user_controller
 
 
 app = FastAPI(title='Finance API')
 
 
-@app.get(path='/', tags=['Home'])
-def root() -> dict[str, any]:
-    return {'message': 'Finance API is running successfully'}
-
-
+app.include_router(auth_controller.router)
 app.include_router(user_controller.router)
