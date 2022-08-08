@@ -3,7 +3,7 @@ from datetime import datetime
 from sqlalchemy import Column, Integer, Boolean, String, Date, ForeignKey
 from sqlalchemy.orm import relationship
 
-from src.config.database import Base
+from src.config.postgres_db import Base
 
 
 class User(Base):

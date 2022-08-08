@@ -4,15 +4,15 @@ from sqlalchemy.orm import sessionmaker
 
 from src.utils.secrets import secrets
 
-db_secrets = secrets.get('DB')
+postgres_secrets = secrets.get('POSTGRES')
 
 SQLALCHEMY_DATABASE_URL = (
     'postgresql://{user}:{password}@{host}:{port}/{schema}'.format(
-        user=db_secrets.get('user'),
-        password=db_secrets.get('password'),
-        host=db_secrets.get('host'),
-        port=db_secrets.get('port'),
-        schema=db_secrets.get('schema'),
+        user=postgres_secrets.get('user'),
+        password=postgres_secrets.get('password'),
+        host=postgres_secrets.get('host'),
+        port=postgres_secrets.get('port'),
+        schema=postgres_secrets.get('schema'),
     )
 )
 

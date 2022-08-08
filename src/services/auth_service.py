@@ -1,8 +1,10 @@
 from fastapi import HTTPException, status
 from sqlalchemy.orm import Session
+from redis import Redis
 
 from src.schemas.auth_schema import LoginSchema, AccessTokenSchema
 from src.services import user_service
+from src.repositories import token_repository
 from src.middlewares.password_middleware import Password
 from src.middlewares.jwt_middleware import JWTBearer
 
@@ -24,3 +26,7 @@ def authenticate_user(db: Session, login: LoginSchema) -> AccessTokenSchema:
     access_token = AccessTokenSchema(access_token=token)
 
     return access_token
+
+
+def logout(redis_conn: Redis, token: str) -> bool:
+    return token_repository.save_token(redis_conn, token)

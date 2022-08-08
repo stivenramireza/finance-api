@@ -39,7 +39,7 @@ class JWTBearer(HTTPBearer):
                 status_code=401, detail='Invalid or expired token'
             )
 
-        return payload
+        return {'sub': payload.get('sub'), 'token': credentials.credentials}
 
     @staticmethod
     def get_jwt_claims(user_identifier: str) -> dict[str, any]:

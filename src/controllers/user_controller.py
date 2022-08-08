@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, Body, status
 
 from sqlalchemy.orm import Session
 
-from src.config.database import db_session
+from src.config.postgres_db import db_session
 from src.schemas.user_schema import UserCreateSchema
 from src.schemas.contact_schema import ContactSchema
 from src.services import user_service
