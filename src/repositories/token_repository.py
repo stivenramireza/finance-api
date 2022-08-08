@@ -1,17 +1,18 @@
-import json
 from redis import Redis
 
 TOKEN_BLACKLIST = 'tokens'
 
 
-def save_token(redis_conn: Redis, token: str) -> bool:
-    blacklist = redis_conn.get(TOKEN_BLACKLIST)
-    if not blacklist:
-        blacklist = []
-        redis_conn.set(TOKEN_BLACKLIST, json.dumps(blacklist))
+def get_tokens(client: Redis) -> list[str]:
+    blacklist_length = client.llen(TOKEN_BLACKLIST)
+    binary_tokens = client.lrange(TOKEN_BLACKLIST, 0, blacklist_length)
+    tokens = list(map(lambda t: t.decode('utf-8'), binary_tokens))
+    if not tokens:
+        return []
 
-    if token not in blacklist:
-        blacklist.append(token)
-        redis_conn.set(TOKEN_BLACKLIST, blacklist)
+    return tokens
 
+
+def save_token(client: Redis, token: str) -> bool:
+    client.rpush(TOKEN_BLACKLIST, token)
     return True

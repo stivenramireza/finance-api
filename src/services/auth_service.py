@@ -28,5 +28,9 @@ def authenticate_user(db: Session, login: LoginSchema) -> AccessTokenSchema:
     return access_token
 
 
-def logout(redis_conn: Redis, token: str) -> bool:
-    return token_repository.save_token(redis_conn, token)
+def logout(client: Redis, token: str) -> bool:
+    tokens = token_repository.get_tokens(client)
+    if token not in tokens:
+        return token_repository.save_token(client, token)
+
+    return False

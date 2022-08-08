@@ -6,6 +6,8 @@ from fastapi import Request, HTTPException
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 import jwt
 
+from src.config.redis_db import redis_client as client
+from src.repositories import token_repository
 from src.utils.secrets import secrets
 
 BEARER_AUTH = 'Bearer'
@@ -33,13 +35,19 @@ class JWTBearer(HTTPBearer):
                 status_code=401, detail='Invalid authentication scheme'
             )
 
-        payload = self.get_payload(credentials.credentials)
+        token = credentials.credentials
+
+        token_blacklist = token_repository.get_tokens(client)
+        if token in token_blacklist:
+            raise HTTPException(status_code=401, detail='Invalid token')
+
+        payload = self.get_payload(token)
         if not payload:
             raise HTTPException(
                 status_code=401, detail='Invalid or expired token'
             )
 
-        return {'sub': payload.get('sub'), 'token': credentials.credentials}
+        return {'sub': payload.get('sub'), 'token': token}
 
     @staticmethod
     def get_jwt_claims(user_identifier: str) -> dict[str, any]:
