@@ -11,5 +11,6 @@ __pycache__
 # Code editor
 .vscode
 
-# Database container
-scripts/database.yml
+# Resources
+scripts/postgres.yml
+scripts/redis.yml
