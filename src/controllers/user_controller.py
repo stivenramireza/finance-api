@@ -30,8 +30,9 @@ def create_user(
     response_model=ContactSchema,
     summary='Get user',
 )
-def get_user(
+def get_current_user(
     db: Session = Depends(db_session),
     jwt_auth: JWTBearer = Depends(JWTBearer()),
 ) -> ContactSchema:
-    return user_service.get_user(db, jwt_auth.get('sub'))
+    user = user_service.get_current_user(db, jwt_auth.get('sub'))
+    return user.contact

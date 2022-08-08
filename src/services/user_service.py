@@ -63,9 +63,9 @@ def create_user(db: Session, user: UserCreateSchema) -> ContactSchema:
     return created_contact
 
 
-def get_user(db: Session, uid: str) -> ContactSchema:
+def get_current_user(db: Session, uid: str) -> UserSchema:
     user = user_repository.get_user_by_uid(db, uid)
     if not user:
         raise HTTPException(status_code=404, detail='User not found')
 
-    return user.contact
+    return user

@@ -1,5 +1,7 @@
 from pydantic import BaseModel, Field, EmailStr
 
+from src.schemas.transaction_schema import TransactionSchema
+
 
 class UserBaseSchema(BaseModel):
     name: str = Field(
@@ -25,6 +27,7 @@ class UserSchema(UserBaseSchema):
     id: int
     active: bool
     contact_id: int
+    source_transactions: list[TransactionSchema] = []
 
     class Config:
         orm_mode = True
