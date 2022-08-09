@@ -5,6 +5,7 @@ from starlette.responses import RedirectResponse
 from src.controllers import (
     auth_controller,
     user_controller,
+    restaurant_controller,
     transaction_controller,
 )
 
@@ -14,7 +15,7 @@ app = FastAPI(
 )
 
 
-@app.get(path='/')
+@app.get(path='/', tags=['Home'])
 def root() -> RedirectResponse:
     return RedirectResponse(url='/docs')
 
@@ -29,4 +30,5 @@ app.add_middleware(
 
 app.include_router(auth_controller.router)
 app.include_router(user_controller.router)
+app.include_router(restaurant_controller.router)
 app.include_router(transaction_controller.router)
