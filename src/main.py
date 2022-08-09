@@ -15,7 +15,7 @@ app = FastAPI(
 )
 
 
-@app.get(path='/', tags=['Home'])
+@app.get(path='/', tags=['home'])
 def root() -> RedirectResponse:
     return RedirectResponse(url='/docs')
 
