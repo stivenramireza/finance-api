@@ -22,9 +22,9 @@ The used technologies were:
 - **Docker:** It's an ecosystem for building, deploying and managing containerized applications (https://www.docker.com).
 - **Docker Compose:** It's a tool for defining and running multi-container Docker applications (https://docs.docker.com/compose).
 - **Psycopg Binary:** It's an adapter that allows you connect to PostgreSQL server and access to the tools that it offers (https://pypi.org/project/psycopg-binary).
-- **PyJWT:** It's an adapter that allows you connect to PostgreSQL server and access to the tools that it offers (https://pypi.org/project/psycopg-binary).
+- **PyJWT:** It's JSON Web Token implementation in order to secure the APIs using different type of encryption algorithms (https://pypi.org/project/PyJWT).
 - **Unittest:** It's a native library built in Python that allows you test the applications and it can run **unit** and **integration** tests (https://docs.python.org/3/library/unittest.html).
-- - **Coverage:** It's a tool to measure code coverage during test execution (https://pypi.org/project/coverage).
+- **Coverage:** It's a tool to measure code coverage during test execution (https://pypi.org/project/coverage).
 - **Black:** It's a tool to format and have a good understading of the code. It uses **PEP8** as its standard styles guide (https://pypi.org/project/black).
 - **Flake8:** It's a tool to lint and have good coding practices. It also uses **PEP8** as its standard styles guide (https://pypi.org/project/flake8).
 
