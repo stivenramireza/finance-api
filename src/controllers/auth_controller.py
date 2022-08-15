@@ -9,21 +9,17 @@ from src.services import auth_service
 from src.middlewares.jwt_middleware import JWTBearer
 
 
-router = APIRouter(prefix='/auth', tags=['auth-service'])
+router = APIRouter(prefix='/auth', tags=['Authentication'])
 
 
-@router.post(
-    path='/login', status_code=status.HTTP_200_OK, summary='User login'
-)
+@router.post(path='/login', status_code=status.HTTP_200_OK, summary='Login')
 def login(
     login: LoginSchema = Body(), db: Session = Depends(db_session)
 ) -> AccessTokenSchema:
     return auth_service.authenticate_user(db, login)
 
 
-@router.post(
-    path='/logout', status_code=status.HTTP_200_OK, summary='User logout'
-)
+@router.post(path='/logout', status_code=status.HTTP_200_OK, summary='Logout')
 def logout(
     jwt_auth: JWTBearer = Depends(JWTBearer()),
 ) -> dict[str, any]:

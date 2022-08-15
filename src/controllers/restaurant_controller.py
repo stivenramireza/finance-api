@@ -7,13 +7,13 @@ from src.services import restaurant_service
 from src.middlewares.jwt_middleware import JWTBearer
 
 
-router = APIRouter(prefix='/restaurants', tags=['restaurant-service'])
+router = APIRouter(prefix='/restaurants', tags=['Restaurants'])
 
 
 @router.get(
     path='',
     status_code=status.HTTP_200_OK,
-    summary='Get near restaurants',
+    summary='Near restaurants',
 )
 def get_restaurants(
     latitude: float = Query(example=6.1514783),

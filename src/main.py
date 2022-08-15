@@ -15,9 +15,9 @@ app = FastAPI(
 )
 
 
-@app.get(path='/', tags=['home'])
+@app.get(path='/', tags=['Home'])
 def root() -> RedirectResponse:
-    return RedirectResponse(url='/docs')
+    return RedirectResponse(url='/redoc')
 
 
 app.add_middleware(

@@ -9,14 +9,14 @@ from src.services import user_service
 from src.middlewares.jwt_middleware import JWTBearer
 
 
-router = APIRouter(prefix='/users', tags=['user-service'])
+router = APIRouter(prefix='/users', tags=['Users'])
 
 
 @router.post(
     path='',
     status_code=status.HTTP_201_CREATED,
     response_model=ContactSchema,
-    summary='Create a user',
+    summary='User',
 )
 def create_user(
     user: UserCreateSchema = Body(), db: Session = Depends(db_session)
@@ -28,7 +28,7 @@ def create_user(
     path='',
     status_code=status.HTTP_200_OK,
     response_model=ContactSchema,
-    summary='Get user',
+    summary='User',
 )
 def get_current_user(
     db: Session = Depends(db_session),

@@ -8,14 +8,14 @@ from src.services import user_service, transaction_service
 from src.middlewares.jwt_middleware import JWTBearer
 
 
-router = APIRouter(prefix='/transactions', tags=['transaction-service'])
+router = APIRouter(prefix='/transactions', tags=['Transactions'])
 
 
 @router.get(
     path='',
     status_code=status.HTTP_200_OK,
     response_model=list[TransactionSchema],
-    summary='Get user transactions',
+    summary='User transactions',
 )
 def get_user_transactions(
     db: Session = Depends(db_session),
