@@ -28,6 +28,24 @@ The used technologies were:
 - **Black:** It's a tool to format and have a good understading of the code. It uses **PEP8** as its standard styles guide (https://pypi.org/project/black).
 - **Flake8:** It's a tool to lint and have good coding practices. It also uses **PEP8** as its standard styles guide (https://pypi.org/project/flake8).
 
+## Environment variables
+
+- **ENV**: Environment where the application will be executed, e.g **production**.
+- **URL**: URL where the application is running, e.g **http://localhost:8000**.
+- **POSTGRES_HOST**: Database host, e.g **localhost**.
+- **POSTGRES_PORT**: Database port, e.g **5432**.
+- **POSTGRES_SCHEMA**: Database name
+- **POSTGRES_USER**: Database user.
+- **POSTGRES_PASSWORD**: Database password.
+- **REDIS_HOST**: Redis host, e.g **localhost**.
+- **REDIS_PORT**: Redis port, e.g **6379**.
+- **REDIS_PASSWORD**: Redis password.
+- **JWT_PRIVATE_KEY**: Private RSA key used for JWT token encoding.
+- **JWT_PUBLIC_KEY**: Public RSA key used for JWT token decoding.
+- **TRAVEL_ADVISOR_API_URL**: External API URL used for getting restaurants in the world.
+- **TRAVEL_ADVISOR_API_KEY**: External API KEY used for endpoint calls.
+- **TRAVEL_ADVISOR_HOST**: Host used for the external API headers.
+
 ## Execution
 
 You can run this application with the following command:
