@@ -16,9 +16,9 @@ router = APIRouter(prefix='/restaurants', tags=['Restaurants'])
     summary='Near restaurants',
 )
 def get_restaurants(
-    latitude: float = Query(example=6.1514783),
-    longitude: float = Query(example=-75.6176184),
-    radius: Optional[float] = Query(gt=1, le=5, default=3, example=3),
+    city: Optional[str] = Query(default=None, example='Medellín'),
+    latitude: Optional[float] = Query(default=None, example=6.1514783),
+    longitude: Optional[float] = Query(default=None, example=-75.6176184),
     jwt_auth: JWTBearer = Depends(JWTBearer()),
 ) -> list[RestaurantSchema]:
-    return restaurant_service.get_restaurants(latitude, longitude, radius)
+    return restaurant_service.get_restaurants(city, latitude, longitude)

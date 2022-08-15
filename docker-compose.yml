@@ -11,6 +11,22 @@ services:
     depends_on:
       - postgres-db
       - redis-db
+    environment:
+      ENV: ${ENV}
+      URL: ${URL}
+      POSTGRES_HOST: ${POSTGRES_HOST}
+      POSTGRES_PORT: ${POSTGRES_PORT}
+      POSTGRES_SCHEMA: ${POSTGRES_SCHEMA}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      REDIS_HOST: ${REDIS_HOST}
+      REDIS_PORT: ${REDIS_PORT}
+      REDIS_PASSWORD: ${REDIS_PASSWORD}
+      JWT_PRIVATE_KEY: ${JWT_PRIVATE_KEY}
+      JWT_PUBLIC_KEY: ${JWT_PUBLIC_KEY}
+      TRAVEL_ADVISOR_API_URL: ${TRAVEL_ADVISOR_API_URL}
+      TRAVEL_ADVISOR_API_KEY: ${TRAVEL_ADVISOR_API_KEY}
+      TRAVEL_ADVISOR_HOST: ${TRAVEL_ADVISOR_HOST}
 
   postgres-db:
     container_name: postgres-db
@@ -23,9 +39,9 @@ services:
       - postgres-db-data:/var/lib/postgresql/data
       - ./scripts/init.sql:/docker-entrypoint-initdb.d/init.sql
     environment:
-      POSTGRES_DB: ${DB_NAME}
-      POSTGRES_USER: ${DB_USER}
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_SCHEMA}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       PGDATA: /var/lib/postgresql/data/pgdata
 
   redis-db:
