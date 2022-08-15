@@ -5,7 +5,7 @@ services:
     container_name: finance-api
     image: stivenramireza/finance-api:1.0.0
     ports:
-      - 80:8000
+      - 8000:8000
     networks:
       - finance
     depends_on:
@@ -14,12 +14,12 @@ services:
     environment:
       ENV: ${ENV}
       URL: ${URL}
-      POSTGRES_HOST: ${POSTGRES_HOST}
+      POSTGRES_HOST: postgres-db
       POSTGRES_PORT: ${POSTGRES_PORT}
       POSTGRES_SCHEMA: ${POSTGRES_SCHEMA}
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      REDIS_HOST: ${REDIS_HOST}
+      REDIS_HOST: redis-db
       REDIS_PORT: ${REDIS_PORT}
       REDIS_PASSWORD: ${REDIS_PASSWORD}
       JWT_PRIVATE_KEY: ${JWT_PRIVATE_KEY}
