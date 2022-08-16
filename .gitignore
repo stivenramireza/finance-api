@@ -16,4 +16,3 @@ scripts/redis.yml
 
 # Coverage
 .coverage
-.coveragerc
