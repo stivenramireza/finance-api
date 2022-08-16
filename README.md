@@ -64,6 +64,6 @@ Some unit tests were implemented in order to check the finance API services. You
 $ python3.10 -m venv venv
 $ source venv/bin/activate
 $ pip install --upgrade -r requirements.txt
-$ coverage run -m unittest
+$ coverage run -m unittest --verbose
 $ coverage report -m
 ```
