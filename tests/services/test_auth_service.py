@@ -10,14 +10,9 @@ from src.middlewares.password_middleware import Password
 class AuthServiceTestCase(TestCase):
     def setUp(self) -> None:
         self.db = Mock()
-        self.login_schema = {
-            'username': 'stivenramireza',
-            'password': 'stivenramireza',
-        }
 
     def tearDown(self) -> None:
         self.db = None
-        self.login_schema = None
 
     @patch.object(Password, 'verify_password')
     @patch('src.services.user_service.get_user_by_username')
@@ -31,5 +26,10 @@ class AuthServiceTestCase(TestCase):
         }
         mock_verify_password.return_value = False
 
+        login_schema = {
+            'username': 'stivenramireza',
+            'password': 'stivenramireza',
+        }
+
         with self.assertRaises(HTTPException):
-            auth_service.authenticate_user(self.db, self.login_schema)
+            auth_service.authenticate_user(self.db, login_schema)
