@@ -13,3 +13,7 @@ __pycache__
 # Resources
 scripts/postgres.yml
 scripts/redis.yml
+
+# Coverage
+.coverage
+.coveragerc
