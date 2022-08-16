@@ -12,6 +12,4 @@ def test_login() -> None:
         json={'username': 'stivenramireza', 'password': 'stivenramireza'},
     )
     assert response.status_code == 200
-    assert response.json() == {
-        'access_token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9'
-    }
+    assert response.json() == {'access_token': 'abcdefghijklmnopqrstuvwxyz'}
