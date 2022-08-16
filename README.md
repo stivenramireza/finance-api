@@ -12,7 +12,7 @@ This finance API contains the following endpoints:
 
 ![Architecture](https://user-images.githubusercontent.com/31974084/184745208-734405e7-8556-4054-8207-b98e9093daf0.png)
 
-### Technologies
+## Technologies
 
 The used technologies were:
 
@@ -29,6 +29,8 @@ The used technologies were:
 - **Flake8:** It's a tool to lint and have good coding practices. It also uses **PEP8** as its standard styles guide (https://pypi.org/project/flake8).
 
 ## Environment variables
+
+These environment variables must be set before running the application.
 
 - **ENV**: Environment where the application will be executed, e.g **production**.
 - **URL**: URL where the application is running, e.g **http://localhost:8000**.
