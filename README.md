@@ -23,7 +23,7 @@ The used technologies were:
 - **Docker Compose:** It's a tool for defining and running multi-container Docker applications (https://docs.docker.com/compose).
 - **Psycopg Binary:** It's an adapter that allows you connect to PostgreSQL server and access to the tools that it offers (https://pypi.org/project/psycopg-binary).
 - **PyJWT:** It's JSON Web Token implementation in order to secure the APIs using different type of encryption algorithms (https://pypi.org/project/PyJWT).
-- **Unittest:** It's a native library built in Python that allows you test the applications and it can run **unit** and **integration** tests (https://docs.python.org/3/library/unittest.html).
+- **Pytest:** It's a framework to test the applications and it can run **unit** and **integration** tests (https://docs.pytest.org/en/7.1.x).
 - **Coverage:** It's a tool to measure code coverage during test execution (https://pypi.org/project/coverage).
 - **Black:** It's a tool to format and have a good understading of the code. It uses **PEP8** as its standard styles guide (https://pypi.org/project/black).
 - **Flake8:** It's a tool to lint and have good coding practices. It also uses **PEP8** as its standard styles guide (https://pypi.org/project/flake8).
@@ -64,6 +64,6 @@ Some unit tests were implemented in order to check the finance API services. You
 $ python3.10 -m venv venv
 $ source venv/bin/activate
 $ pip install --upgrade -r requirements.txt
-$ coverage run -m unittest --verbose
+$ coverage run -m pytest --verbose
 $ coverage report -m
 ```
